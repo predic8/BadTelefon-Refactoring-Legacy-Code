@@ -32,9 +32,7 @@ public class TarifeRunnerTest {
 
 	@Test
 	public void testRunnerWithApprovals() throws Exception {
-		System.out.println("Hallo Hauskonferenz!");
-		System.out.print("Hallo Falk!");
-		// TarifeRunner.main(null);
+		TarifeRunner.main(null);
 		Approvals.verify(consoleStream.toString());
 	}
 
