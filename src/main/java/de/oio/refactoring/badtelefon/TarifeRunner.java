@@ -5,6 +5,10 @@ import java.util.Random;
 
 public class TarifeRunner {
 	public static void main(String args[]) {
+		new TarifeRunner().run();
+	}
+
+	protected static void run() {
 		Random random = new Random();
 
 		for(Integer tarif : Arrays.asList(Tarif.PRIVAT, Tarif.BUSINESS, Tarif.PROFI)) {
