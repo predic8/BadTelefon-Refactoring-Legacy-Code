@@ -47,11 +47,7 @@ public class Kunde {
 	}
 
 	protected static boolean isMondschein(int stunde) {
-		boolean mondschein = false;
-		// Mondscheinzeit ?
-		if (stunde < 9 || stunde > 18)
-			mondschein = true;
-		return mondschein;
+		return stunde < 9 || stunde > 18;
 	}
 
 	public double getGebuehr() {
