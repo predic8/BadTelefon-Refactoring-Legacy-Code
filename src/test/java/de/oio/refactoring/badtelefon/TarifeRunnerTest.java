@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Random;
 
 import org.approvaltests.Approvals;
 import org.junit.After;
@@ -30,9 +31,16 @@ public class TarifeRunnerTest {
 		assertEquals("Hallo Publikum!\r\nHallo Falk!", consoleStream.toString());
 	}
 
+	private class TarifeRunnerForTest extends TarifeRunner {
+		@Override
+		protected Random getRandom() {
+			return new Random(42);
+		}
+	}
+	
 	@Test
 	public void testRunnerWithApprovals() throws Exception {
-		TarifeRunner.main(null);
+		new TarifeRunnerForTest().run();
 		Approvals.verify(consoleStream.toString());
 	}
 
