@@ -8,8 +8,8 @@ public class TarifeRunner {
 		new TarifeRunner().run();
 	}
 
-	protected static void run() {
-		Random random = new Random();
+	public void run() {
+		Random random = getRandom();
 
 		for(Integer tarif : Arrays.asList(Tarif.PRIVAT, Tarif.BUSINESS, Tarif.PROFI)) {
 			System.out.println(String.format("\nVerarbeitung von Tarif %s", tarif));
@@ -21,5 +21,9 @@ public class TarifeRunner {
 			
 			System.out.println("Abrechnung: " + k.getGebuehr());
 		}
+	}
+
+	protected Random getRandom() {
+		return new Random();
 	}
 }
