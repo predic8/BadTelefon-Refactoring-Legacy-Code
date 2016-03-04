@@ -46,7 +46,7 @@ public class Kunde {
 		System.out.println(message3);
 	}
 
-	protected boolean isMondschein(int stunde) {
+	protected static boolean isMondschein(int stunde) {
 		boolean mondschein = false;
 		// Mondscheinzeit ?
 		if (stunde < 9 || stunde > 18)
