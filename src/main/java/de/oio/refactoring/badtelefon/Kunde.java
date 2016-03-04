@@ -46,7 +46,7 @@ public class Kunde {
 		writeToConsole(message3);
 	}
 
-	protected void writeToConsole(String message1) {
+	protected static void writeToConsole(String message1) {
 		System.out.println(message1);
 	}
 
