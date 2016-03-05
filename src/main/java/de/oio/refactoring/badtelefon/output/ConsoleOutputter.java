@@ -1,8 +1,12 @@
 package de.oio.refactoring.badtelefon.output;
 
-public class ConsoleOutputter {
+public class ConsoleOutputter implements Outputter {
 
-	public void writeToConsole(String message) {
+	/* (non-Javadoc)
+	 * @see de.oio.refactoring.badtelefon.output.Outputter#writeToConsole(java.lang.String)
+	 */
+	@Override
+	public void writeLine(String message) {
 		System.out.println(message);
 	}
 
