@@ -5,9 +5,11 @@ import de.oio.refactoring.badtelefon.output.ConsoleOutputter;
 public class Kunde {
 	double gebuehr = 0.0;
 	Tarif tarif;
+	private ConsoleOutputter ConsoleOutputter;
 
 	public Kunde(int tarifArt) {
 		this.tarif = new Tarif(tarifArt);
+		this.ConsoleOutputter = new ConsoleOutputter();
 	}
 
 	public void account(int minuten, int stunde, int minute) {
