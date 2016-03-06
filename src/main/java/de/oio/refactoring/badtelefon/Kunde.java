@@ -47,7 +47,7 @@ public class Kunde {
 		outputter.writeLine(String.format("Gesamtgebühr nach Gespräch um %02d:%02d (Mondscheinzeit: %s): %.2f", stunde, minute, mondschein, gebuehr));
 	}
 
-	protected static boolean isMondschein(int stunde) {
+	private static boolean isMondschein(int stunde) {
 		return stunde < 9 || stunde > 18;
 	}
 

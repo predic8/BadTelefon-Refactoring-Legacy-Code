@@ -2,25 +2,40 @@ package de.oio.refactoring.badtelefon;
 
 import static org.junit.Assert.assertEquals;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import org.junit.Test;
 
 public class MondscheinTest {
 
 	@Test
 	public void testMondschein() {
-		assertEquals(true, Kunde.isMondschein(0));
-		assertEquals(true, Kunde.isMondschein(8));
+		assertEquals(true, invokeIsMondschein(0));
+		assertEquals(true, invokeIsMondschein(8));
 
-		assertEquals(false, Kunde.isMondschein(9));
-		assertEquals(false, Kunde.isMondschein(12));
-		assertEquals(false, Kunde.isMondschein(17));
-		assertEquals(false, Kunde.isMondschein(18));
+		assertEquals(false, invokeIsMondschein(9));
+		assertEquals(false, invokeIsMondschein(12));
+		assertEquals(false, invokeIsMondschein(17));
+		assertEquals(false, invokeIsMondschein(18));
 
-		assertEquals(true, Kunde.isMondschein(19));
-		assertEquals(true, Kunde.isMondschein(23));
-		assertEquals(true, Kunde.isMondschein(24));
-		assertEquals(true, Kunde.isMondschein(30));
-		assertEquals(true, Kunde.isMondschein(-1));
+		assertEquals(true, invokeIsMondschein(19));
+		assertEquals(true, invokeIsMondschein(23));
+		assertEquals(true, invokeIsMondschein(24));
+		assertEquals(true, invokeIsMondschein(30));
+		assertEquals(true, invokeIsMondschein(-1));
+	}
+
+	private boolean invokeIsMondschein(int hour) {
+		try {
+			Method method = Kunde.class.getDeclaredMethod("isMondschein", Integer.TYPE);
+			method.setAccessible(true);
+			return (boolean) method.invoke(null, hour);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }
