@@ -12,6 +12,11 @@ public class Kunde {
 		this.tarif = new Tarif(tarifArt);
 		this.outputter = new ConsoleOutputter();
 	}
+	
+	public Kunde(int tarifArt, Outputter outputter) {
+		this(tarifArt);
+		this.outputter = outputter;
+	}
 
 	public void account(int minuten, int stunde, int minute) {
 		outputter.writeLine(String.format("Berechne Gespräch mit %02d min um %02d:%02d mit Tarif %s", minuten, stunde, minute, tarif.tarif));
