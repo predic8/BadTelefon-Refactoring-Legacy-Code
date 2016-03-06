@@ -8,7 +8,7 @@ public class Kunde {
 	Tarif tarif;
 	private Outputter outputter;
 
-	public Kunde(int tarifArt) {
+	private Kunde(int tarifArt) {
 		this.tarif = new Tarif(tarifArt);
 		this.outputter = new ConsoleOutputter();
 	}

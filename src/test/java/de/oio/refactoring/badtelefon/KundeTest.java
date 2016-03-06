@@ -12,7 +12,7 @@ public class KundeTest {
 	@Test
 	public void testAccount() {
 		Outputter stringOutputter = new StringOutputter();
-		Kunde kunde = new Kunde(Tarif.BUSINESS);
+		Kunde kunde = new Kunde(Tarif.BUSINESS, stringOutputter);
 		kunde.setOutputter(stringOutputter);
 		kunde.account(10, 12, 35);
 		assertEquals(
