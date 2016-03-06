@@ -1,20 +1,14 @@
 package de.oio.refactoring.badtelefon;
 
-import de.oio.refactoring.badtelefon.output.ConsoleOutputter;
 import de.oio.refactoring.badtelefon.output.Outputter;
 
 public class Kunde {
 	double gebuehr = 0.0;
 	Tarif tarif;
-	private Outputter outputter;
+	private final Outputter outputter;
 
-	private Kunde(int tarifArt) {
-		this.tarif = new Tarif(tarifArt);
-		this.outputter = new ConsoleOutputter();
-	}
-	
 	public Kunde(int tarifArt, Outputter outputter) {
-		this(tarifArt);
+		this.tarif = new Tarif(tarifArt);
 		this.outputter = outputter;
 	}
 
@@ -61,7 +55,4 @@ public class Kunde {
 		return gebuehr;
 	}
 
-	public void setOutputter(Outputter outputter) {
-		this.outputter = outputter;
-	}
 }

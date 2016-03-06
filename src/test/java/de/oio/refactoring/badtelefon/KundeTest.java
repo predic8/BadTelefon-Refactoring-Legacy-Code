@@ -13,7 +13,6 @@ public class KundeTest {
 	public void testAccount() {
 		Outputter stringOutputter = new StringOutputter();
 		Kunde kunde = new Kunde(Tarif.BUSINESS, stringOutputter);
-		kunde.setOutputter(stringOutputter);
 		kunde.account(10, 12, 35);
 		assertEquals(
 				"Berechne Gespräch mit 10 min um 12:35 mit Tarif 1\r\n" + "Preis für das Gespräch: 12,90\r\n"
