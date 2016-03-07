@@ -30,4 +30,13 @@ public class KundeTest {
 		verifyNoMoreInteractions(outputterMock);
 	}
 
+	@Test
+	public void testAccountWithPrivatTarif() {
+		new Kunde(Tarif.PRIVAT, outputterMock).account(10, 12, 35);
+		verify(outputterMock).writeLine("Berechne Gespräch mit 10 min um 12:35 mit Tarif 0");
+		verify(outputterMock).writeLine("Preis für das Gespräch: 17,91");
+		verify(outputterMock).writeLine("Gesamtgebühr nach Gespräch um 12:35 (Mondscheinzeit: false): 17,91");
+		verifyNoMoreInteractions(outputterMock);
+	}
+
 }
