@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 public class MondscheinTest {
 
@@ -38,4 +39,9 @@ public class MondscheinTest {
 		return false;
 	}
 
+	@Test
+	public void testInvokeWithWhitebox() throws Exception {
+		assertEquals(true, Whitebox.invokeMethod(Kunde.class, "isMondschein", 8));
+		assertEquals(false, Whitebox.invokeMethod(Kunde.class, "isMondschein", 10));
+	}
 }
