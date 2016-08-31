@@ -2,7 +2,6 @@ package de.oio.refactoring.badtelefon;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.logging.ConsoleHandler;
 
 import de.oio.refactoring.badtelefon.output.ConsoleOutputter;
 
