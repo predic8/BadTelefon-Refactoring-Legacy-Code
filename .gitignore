@@ -1,7 +1,7 @@
 *.class
 
 # Package Files #
-*.jar
+target/*.jar
 *.war
 *.ear
 
@@ -9,3 +9,4 @@
 hs_err_pid*
 /target/
 *.approved.txt
+generated-sources/
