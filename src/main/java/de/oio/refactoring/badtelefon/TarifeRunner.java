@@ -5,7 +5,11 @@ import java.util.Random;
 
 public class TarifeRunner {
 	public static void main(String args[]) {
-		Random random = new Random();
+		new TarifeRunner().run();
+	}
+
+	public void run() {
+		Random random = getRandom();
 
 		for(Integer tarif : Arrays.asList(Tarif.PRIVAT, Tarif.BUSINESS, Tarif.PROFI)) {
 			System.out.println(String.format("\nVerarbeitung von Tarif %s", tarif));
@@ -17,5 +21,10 @@ public class TarifeRunner {
 			
 			System.out.println("Abrechnung: " + k.getGebuehr());
 		}
+	}
+
+	protected Random getRandom() {
+		Random random = new Random();
+		return random;
 	}
 }

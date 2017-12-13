@@ -10,13 +10,9 @@ public class Kunde {
 
 	public void account(int minuten, int stunde, int minute) {
 		String message1 = String.format("Berechne Gespräch mit %02d min um %02d:%02d mit Tarif %s", minuten, stunde, minute, tarif.tarif);
-		System.out.println(message1);
-		boolean mondschein = false;
+		writeToConsole(message1);
 		double preis = 0;
-
-		// Mondscheinzeit ?
-		if (stunde < 9 || stunde > 18)
-			mondschein = true;
+		boolean mondschein = isMondschein(stunde);
 
 		// Gespraechspreis ermitteln
 		switch (tarif.tarif) {
@@ -42,11 +38,19 @@ public class Kunde {
 
 		}
 		String message2 = String.format("Preis für das Gespräch: %.2f", preis);
-		System.out.println(message2);
+		writeToConsole(message2);
 		
 		gebuehr += preis;
 		String message3 = String.format("Gesamtgebühr nach Gespräch um %02d:%02d (Mondscheinzeit: %s): %.2f", stunde, minute, mondschein, gebuehr);
-		System.out.println(message3);
+		writeToConsole(message3);
+	}
+
+	public static void writeToConsole(String message) {
+		System.out.println(message);
+	}
+
+	public static boolean isMondschein(int stunde) {
+		return stunde < 9 || stunde > 18;
 	}
 
 	public double getGebuehr() {
