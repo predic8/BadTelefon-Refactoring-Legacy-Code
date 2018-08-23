@@ -1,9 +1,7 @@
 package de.oio.refactoring.badtelefon;
 
 public class Kunde {
-    public static final int MONDSCHEINZEIT_ENDE = 9;
-    public static final int MONDSCHEINZEIT_ANFANG = 18;
-    double gebuehr = 0.0;
+	double gebuehr = 0.0;
 	Tarif tarif;
 
 	public Kunde(int tarifArt) {
@@ -13,9 +11,12 @@ public class Kunde {
 	public void account(int minuten, int stunde, int minute) {
 		String message1 = String.format("Berechne Gespräch mit %02d min um %02d:%02d mit Tarif %s", minuten, stunde, minute, tarif.tarif);
 		System.out.println(message1);
+		boolean mondschein = false;
 		double preis = 0;
 
-		boolean mondschein = stunde < MONDSCHEINZEIT_ENDE || stunde > MONDSCHEINZEIT_ANFANG;
+		// Mondscheinzeit ?
+		if (stunde < 9 || stunde > 18)
+			mondschein = true;
 
 		// Gespraechspreis ermitteln
 		switch (tarif.tarif) {
