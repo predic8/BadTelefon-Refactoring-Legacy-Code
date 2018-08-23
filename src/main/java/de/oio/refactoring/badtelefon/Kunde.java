@@ -1,7 +1,9 @@
 package de.oio.refactoring.badtelefon;
 
 public class Kunde {
-	double gebuehr = 0.0;
+    public static final int MONDSCHEINZEIT_ENDE = 9;
+    public static final int MONDSCHEINZEIT_ANFANG = 18;
+    double gebuehr = 0.0;
 	Tarif tarif;
 
 	public Kunde(int tarifArt) {
@@ -47,11 +49,7 @@ public class Kunde {
 	}
 
     static boolean isMondschein(int stunde) {
-        boolean mondschein = false;
-        // Mondscheinzeit ?
-        if (stunde < 9 || stunde > 18)
-            mondschein = true;
-        return mondschein;
+        return stunde < MONDSCHEINZEIT_ENDE || stunde > MONDSCHEINZEIT_ANFANG;
     }
 
     public double getGebuehr() {
