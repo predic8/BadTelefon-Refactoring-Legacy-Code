@@ -11,14 +11,11 @@ public class Kunde {
 	public void account(int minuten, int stunde, int minute) {
 		String message1 = String.format("Berechne Gespräch mit %02d min um %02d:%02d mit Tarif %s", minuten, stunde, minute, tarif.tarif);
 		System.out.println(message1);
-		boolean mondschein = false;
 		double preis = 0;
 
-		// Mondscheinzeit ?
-		if (stunde < 9 || stunde > 18)
-			mondschein = true;
+        boolean mondschein = isMondschein(stunde);
 
-		// Gespraechspreis ermitteln
+        // Gespraechspreis ermitteln
 		switch (tarif.tarif) {
 		case Tarif.PRIVAT:
 			minuten = minuten - 1;
@@ -49,7 +46,15 @@ public class Kunde {
 		System.out.println(message3);
 	}
 
-	public double getGebuehr() {
+    private boolean isMondschein(int stunde) {
+        boolean mondschein = false;
+        // Mondscheinzeit ?
+        if (stunde < 9 || stunde > 18)
+            mondschein = true;
+        return mondschein;
+    }
+
+    public double getGebuehr() {
 		return gebuehr;
 	}
 }
