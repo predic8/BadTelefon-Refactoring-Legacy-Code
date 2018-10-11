@@ -1,0 +1,28 @@
+@startuml
+!pragma graphviz_dot jdot
+
+top to bottom direction
+skinparam handwritten true
+
+
+class TarifeRunner {
+public static void main()
+}
+
+class Kunde {
+double gebuehr
+public double account()
+}
+
+class Tarif {
+public static final int PRIVAT
+public static final int BUSINESS
+public static final int PROFI
+}
+
+TarifeRunner -- Kunde
+Kunde -- Tarif
+TarifeRunner -- Tarif
+
+
+@enduml

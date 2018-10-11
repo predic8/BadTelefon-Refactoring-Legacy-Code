@@ -1,0 +1,20 @@
+@startuml
+!pragma graphviz_dot jdot
+
+top to bottom direction
+' skinparam handwritten true
+
+skinparam usecase {
+	BackgroundColor<< Ziel >> YellowGreen
+}
+
+(Mondscheinzeitberechnung refactoren) as goal <<Ziel>>
+'(Unit-Test für Mondscheinzeitberechnung) as pre1 <<Vorbedingung>>
+'(Extract Method isMondschein) as pre11 <<Vorbedingung>>
+'(Temporäre Variable mondschein verschieben ✔) as pre111 <<Vorbedingung>>
+
+'pre111 -- pre11
+'pre11 -- pre1
+'pre1 -- goal
+
+@enduml

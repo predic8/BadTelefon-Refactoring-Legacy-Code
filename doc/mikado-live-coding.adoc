@@ -1,0 +1,154 @@
+# Allgemeines
+
+## Git Branches und Tags
+* `git log --decorate --oneline --all`
+* Ausgangspunkt inital: `git checkout mikado-dev-initial`
+* Ausgangspunkt nach Refactoring 1: `mikado-refactoring1-mondscheinzeit`
+* Stage leeren: git reset HEAD *
+* offene Änderungen reverten: git checkout -- <file>
+
+## IntelliJ Tastenkürzel
+### Refactoring
+* Strg-Shift-Alt-T: alle Refactorings
+* Strg-Alt-C: Extract Constant
+
+# Refactoring 1: Mondscheinzeitberechnung verbessern
+
+Ziel: Mondscheinzeitberechnung-Logik verbessern/refactoren
+
+1. naiver Versuch: if-Bedingung direkt temporärer Variable zuweisen und Magic Number ersetzen
+* Live-Template mikmond1 <Tab>
+* Extract Constant (Strg-Alt-C): 9 => IS_MONDSCHEIN_ENDE
+* `mondschein = stunde < IS_MONDSCHEIN_ENDE || stunde > 18;`
+* ungutes Gefühl, es gibt keine automatisierten Tests
+* *Vorbedingung 1*: Unit-Test für Mondscheinzeitberechnung schreiben
+
+2. Revert der Änderungen
+
+3. account-Methode testen
+* ist aufwändig
+* *Vorbedingung 1_1*: Mondscheinzeitberechnung in eine eigene Methode
+
+4. naives Refactoring: Extract Method
+* Warum zweiter Parameter mondschein?
+* weil es eine temporäre Variable gibt, die in der extrahierten Methode zugewiesen wird
+* Problem: zweite Variable im Weg
+* *Vorbedingung 1_1_1*: temporäre Variable verschieben
+
+5. Revert der Änderungen
+
+6. Implementierung Vorbedingung 1_1_1: temporäre Variable verschieben
+* `boolean mondschein = false;` verschieben (Alt-Shift-Down)
+* => funktioniert
+* git commit macht noch keinen Sinn
+
+7. Implementierung Vorbedingung 1_1: Extract Method
+* statisch für pure Function
+* package private fürs Testen
+* => funktioniert
+* git commit macht noch keinen Sinn
+
+8. Implementierung Vorbedingung 1: Unit-Test für Mondscheinzeitberechnung schreiben
+* neue Klasse `MondscheinTests` (Alt-Einfg) unter src/test/java (Alt-1)
+* Live-Template mikmond2 (Tab), dann Alt-Enter (Importe)
+* Test ausführen (Strg-Shift-F10)
+=> funktioniert
+* git commit -m "Vorbedingung 1_1_1 bis 1"
+
+9. Implementierung Ziel: Mondscheinzeitberechnung-Logik verbessern/refactoren
+* temporäre Variable eliminieren
+* Kommentar löschen
+* Magic Numbers ersetzen
+* `return stunde < MONDSCHEIN_ENDE || stunde > MONDSCHEIN_ANFANG;`
+* git commit -m "Mikado-Ziel erreicht"
+
+10. Ziel erreicht
+
+
+Mikado-Graph
+
+```
+Ziel (/)
+  |
+  -- Vorbedingung 1 (/)
+      |
+	  -- Vorbedingung 1_1 (/)
+	      |
+		  -- Vorbedingung 1_1_1 (/)
+```
+
+["plantuml", "", "svg"]
+------------------------------------------------
+include::mondschein-refactoring.puml[]
+------------------------------------------------
+
+
+# Refactoring 2: Tarife dynamisch hinzufügen
+
+*TODO: bisher nur rudimentär ausgearbeitet, wird für Vortrag <= 60 Minuten auch nicht gebraucht.*
+
+*TODO: in Live-Demo nur einen Ausschnitt des Mikado-Graphen vorführen, ggf. mit Git Tags an bestimmte Stellen springen.*
+
+["plantuml", "", "svg"]
+------------------------------------------------
+include::tarif-refactoring.puml[]
+------------------------------------------------
+
+Ziel: Neue Tarife dynamisch hinzufügen (ohne Neustart der Anwendung)
+
+* größerer Umbau, Tests schreiben: Golden Master + account-Methode testen
+
+1. naiver Versuch: im Switch default Block versuchen aus einer Textdatei Informationen nachzuladen und entsprechend zu verarbeiten
+=> schwierig zu testen, schwer zu warten, schlecht lesbar
+
+Vorbedingung 1: Tarife per Reflection laden
+
+2. Idee: Klassen in den Klassenpfad legen und per Reflection laden
+* wir brauchen je Tarif eine Klasse, dafür müssen wir aber erstmal die Tarifkonstanten wegbekommen
+
+Vorbedingung 1_1: Tarifkonstanten durch TarifType ersetzen
+
+Vorbedingung 1_2: Tarife über Faactory erzeugen
+
+Vorbedingung 1_1_1: Neue Tarifsubklassen einführen
+
+Vorbedingung 1_1_1_1: Tarifberechnung testen
+
+Vorbedingung 1_1_1_1_1: Tarifberechnung nach Tarif verschieben
+
+Vorbedingung 1_1_1_1_1_1: Extract Method preisermitteln
+
+* zuviele Parameter werden extrahiert: preis und mondschein
+* Revert
+
+Vorbedingung 1_1_1_1_1_1_1: Move Variable gebuehr
+
+Vorbedingung 1_1_1_1_1_1_2: mondschein inline
+
+* erneut Extract Method ausprobieren
+* für Mondschein-Berechnung kommt die Stunde rein, Abgernzung zu minuten ist schlecht erkennbar
+
+Vorbedingung 1_1_1_1_1_1_3: Introduce parameter object Zeitpunkt Dataclump stunde + minute
+
+Vorbedingung 1_1_1_1_1_1: Extract Method preisermitteln
+
+Vorbedingung 1_1_1_1_1: Tarifberechnung nach Tarif verschieben
+
+* aber da wird in Tarif auf Kunde zugegriffen: Kunde.isMondschein
+* Revert
+
+Vorbedingung 1_1_1_1_2: Move Method isMondschein zu Zeitpunkt
+
+Vorbedingung 1_1_1_1_2_1: Methode nicht statisch
+
+Vorbedingung 1_1_1_1_1: Tarifberechnung nach Tarif verschieben
+
+TODO
+
+
+
+
+Input Steven:
+* gute Idee, Pure Function und Golden Master nebenbei zu erklären
+* gut, wenn Tests auch mal rot sind, also absichtlich was kaputt machen
+* Tests per TDD schreiben, wenn es passt/geht

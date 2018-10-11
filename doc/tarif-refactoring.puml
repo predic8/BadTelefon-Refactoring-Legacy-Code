@@ -1,0 +1,55 @@
+@startuml
+!pragma graphviz_dot jdot
+
+top to bottom direction
+' skinparam handwritten true
+
+skinparam usecase {
+	BackgroundColor<< Ziel >> YellowGreen
+}
+
+' Abhaken: ✔
+
+(Neue Tarife dynamisch hinzufügen) as goal <<Ziel>>
+(Tarife per Reflection laden) as pre1 <<Vorbedingung>>
+(Tarifkonstanten durch TarifType ersetzen) as pre11 <<Vorbedingung>>
+(Tarife über Factory erzeugen) as pre12 <<Vorbedingung>>
+(Neue Tarifsubklassen einführen) as pre111 <<Vorbedingung>>
+(isMondschein nach Zeitpunkt verschieben) as pre111112 <<Vorbedingung>>
+(isMondschein nicht mehr statisch) as pre1111121 <<Vorbedingung>>
+(Tarifberechnung testen) as pre1111 <<Vorbedingung>>
+(Tarifberechnung nach Tarif verschieben) as pre11111 <<Vorbedingung>>
+(Extract Method preisErmitteln) as pre111111 <<Vorbedingung>>
+(Move Variable preis ✔) as pre1111111 <<Vorbedingung>>
+(Variable mondschein inlinen ✔) as pre1111112 <<Vorbedingung>>
+(Introduce Parameter Object Zeitklasse ) as pre1111113 <<Vorbedingung>>
+
+(Neuen Tarif implementieren ) as pre2 <<Vorbedingung>>
+(...) as pre21 <<Vorbedingung>>
+(Duplizierung Tarifberechnung entfernen) as pre13 <<Vorbedingung>>
+(...) as pre121 <<Vorbedingung>>
+(Parameter kunde entfernen) as pre11113 <<Vorbedingung>>
+
+
+'pre21 -- pre2
+'pre2 -- goal
+'pre121 -- pre13
+'pre13 -- pre1
+pre11113 -- pre1111
+
+pre1111113 -- pre111111
+pre1111112 -- pre111111
+pre1111111 -- pre111111
+pre1111121 -- pre111112
+pre111112 -- pre11111
+pre111111 -- pre11111
+pre11111 -- pre1111
+pre1111 -- pre111
+pre111 -- pre12
+pre111 -- pre11
+pre12 -- pre1
+pre11 -- pre1
+pre1 -- goal
+
+goal -- ()Start
+@enduml

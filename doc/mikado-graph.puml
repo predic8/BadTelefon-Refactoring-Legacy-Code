@@ -1,0 +1,29 @@
+@startuml
+!pragma graphviz_dot jdot
+
+top to bottom direction
+' skinparam handwritten true
+
+skinparam usecase {
+	BackgroundColor<< Ziel >> YellowGreen
+}
+
+(Mikado Ziel) as goal <<Ziel>>
+(Vorbedingung 1) as pre1 <<Vorbedingung>>
+(Vorbedingung 2) as pre2 <<Vorbedingung>>
+(Vorbedingung 11) as pre11 <<Vorbedingung>>
+(Vorbedingung 21) as pre21 <<Vorbedingung>>
+(Vorbedingung 22) as pre22 <<Vorbedingung>>
+(Vorbedingung 221) as pre221 <<Vorbedingung>>
+
+
+
+pre221 -- pre22
+pre22 -- pre2
+pre21 -- pre2
+pre11 -- pre2
+pre11 -- pre1
+pre2 -- goal
+pre1 -- goal
+
+@enduml
