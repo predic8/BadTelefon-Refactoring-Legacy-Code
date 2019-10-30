@@ -18,6 +18,9 @@ Ziel: Mondscheinzeitberechnung-Logik verbessern/refactoren
 
 1. naiver Versuch: if-Bedingung direkt temporärer Variable zuweisen und Magic Number ersetzen
 * Live-Template mikmond1 <Tab>
+```
+mondschein = stunde < 9 || stunde > 18;
+```
 * Extract Constant (Strg-Alt-C): 9 => IS_MONDSCHEIN_ENDE
 * `mondschein = stunde < IS_MONDSCHEIN_ENDE || stunde > 18;`
 * ungutes Gefühl, es gibt keine automatisierten Tests
@@ -50,7 +53,25 @@ Ziel: Mondscheinzeitberechnung-Logik verbessern/refactoren
 
 8. Implementierung Vorbedingung 1: Unit-Test für Mondscheinzeitberechnung schreiben
 * neue Klasse `MondscheinTests` (Alt-Einfg) unter src/test/java (Alt-1)
-* Live-Template mikmond2 (Tab), dann Alt-Enter (Importe)
+* Live-Template mikmond2 (Tab), dann Alt-Enter (Importe), ggf. aktivieren (Settings -> Editor -> General -> Auto Import, Add unambiguous imports on the fly.)
+
+```
+@Test
+public void testMondschein() {
+        assertEquals(true, Kunde.isMondschein(0));
+        assertEquals(true, Kunde.isMondschein(8));        
+		assertEquals(false, Kunde.isMondschein(9));        
+		assertEquals(false, Kunde.isMondschein(12));        
+		assertEquals(false, Kunde.isMondschein(17));        
+		assertEquals(false, Kunde.isMondschein(18));        
+		assertEquals(true, Kunde.isMondschein(19));        
+		assertEquals(true, Kunde.isMondschein(23));        
+		assertEquals(true, Kunde.isMondschein(24));        
+		assertEquals(true, Kunde.isMondschein(30));        
+		assertEquals(true, Kunde.isMondschein(-1));   
+}
+```
+
 * Test ausführen (Strg-Shift-F10)
 => funktioniert
 * git commit -m "Vorbedingung 1_1_1 bis 1"
