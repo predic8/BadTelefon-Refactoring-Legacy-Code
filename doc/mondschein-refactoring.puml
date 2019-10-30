@@ -9,12 +9,15 @@ skinparam usecase {
 }
 
 (Mondscheinzeitberechnung refactoren) as goal <<Ziel>>
-'(Unit-Test für Mondscheinzeitberechnung) as pre1 <<Vorbedingung>>
-'(Extract Method isMondschein) as pre11 <<Vorbedingung>>
-'(Temporäre Variable mondschein verschieben ✔) as pre111 <<Vorbedingung>>
 
-'pre111 -- pre11
-'pre11 -- pre1
+'(Unit-Test für Mondscheinzeitberechnung) as pre1 <<Vorbedingung>>
 'pre1 -- goal
+
+'(Extract Method isMondschein) as pre11 <<Vorbedingung>>
+'pre11 -- pre1
+
+'(Temporäre Variable mondschein verschieben ✔) as pre111 <<Vorbedingung>>
+'pre111 -- pre11
+
 
 @enduml
