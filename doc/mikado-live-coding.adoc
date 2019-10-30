@@ -12,7 +12,7 @@
 * Strg-Shift-Alt-T: alle Refactorings
 * Strg-Alt-C: Extract Constant
 
-# Refactoring 1: Mondscheinzeitberechnung verbessern
+## Refactoring 1: Mondscheinzeitberechnung verbessern
 
 Ziel: Mondscheinzeitberechnung-Logik verbessern/refactoren
 
