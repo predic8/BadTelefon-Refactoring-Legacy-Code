@@ -1,26 +1,29 @@
-# Allgemeines
+= Allgemeines
 
-## Git Branches und Tags
+== Git Branches und Tags
 * `git log --decorate --oneline --all`
 * Ausgangspunkt inital: `git checkout mikado-dev-initial`
 * Ausgangspunkt nach Refactoring 1: `mikado-refactoring1-mondscheinzeit`
 * Stage leeren: git reset HEAD *
 * offene Änderungen reverten: git checkout -- <file>
 
-## IntelliJ Tastenkürzel
-### Refactoring
+== IntelliJ Tastenkürzel
+=== Refactoring
 * Strg-Shift-Alt-T: alle Refactorings
 * Strg-Alt-C: Extract Constant
 
-## Refactoring 1: Mondscheinzeitberechnung verbessern
+== Refactoring 1: Mondscheinzeitberechnung verbessern
 
 Ziel: Mondscheinzeitberechnung-Logik verbessern/refactoren
 
 1. naiver Versuch: if-Bedingung direkt temporärer Variable zuweisen und Magic Number ersetzen
 * Live-Template mikmond1 <Tab>
-```
+
+[source]
+----
 mondschein = stunde < 9 || stunde > 18;
-```
+----
+
 * Extract Constant (Strg-Alt-C): 9 => IS_MONDSCHEIN_ENDE
 * `mondschein = stunde < IS_MONDSCHEIN_ENDE || stunde > 18;`
 * ungutes Gefühl, es gibt keine automatisierten Tests
@@ -55,7 +58,9 @@ mondschein = stunde < 9 || stunde > 18;
 * neue Klasse `MondscheinTests` (Alt-Einfg) unter src/test/java (Alt-1)
 * Live-Template mikmond2 (Tab), dann Alt-Enter (Importe), ggf. aktivieren (Settings -> Editor -> General -> Auto Import, Add unambiguous imports on the fly.)
 
-```
+
+[source]
+----
 @Test
 public void testMondschein() {
         assertEquals(true, Kunde.isMondschein(0));
@@ -70,7 +75,7 @@ public void testMondschein() {
 		assertEquals(true, Kunde.isMondschein(30));        
 		assertEquals(true, Kunde.isMondschein(-1));   
 }
-```
+----
 
 * Test ausführen (Strg-Shift-F10)
 => funktioniert
@@ -98,19 +103,19 @@ Ziel (/)
 		  -- Vorbedingung 1_1_1 (/)
 ```
 
-["plantuml", "", "svg"]
+["plantuml", "{plantUMLDir}mondschein-refactoring", "svg"]
 ------------------------------------------------
 include::mondschein-refactoring.puml[]
 ------------------------------------------------
 
 
-# Refactoring 2: Tarife dynamisch hinzufügen
+== Refactoring 2: Tarife dynamisch hinzufügen
 
 *TODO: bisher nur rudimentär ausgearbeitet, wird für Vortrag <= 60 Minuten auch nicht gebraucht.*
 
 *TODO: in Live-Demo nur einen Ausschnitt des Mikado-Graphen vorführen, ggf. mit Git Tags an bestimmte Stellen springen.*
 
-["plantuml", "", "svg"]
+["plantuml", "{plantUMLDir}tarif-refactoring", "svg"]
 ------------------------------------------------
 include::tarif-refactoring.puml[]
 ------------------------------------------------
