@@ -9,7 +9,7 @@ public class Kunde {
 	}
 
 	public void account(int minuten, int stunde, int minute) {
-		String message1 = String.format("Berechne Gespräch mit %02d min um %02d:%02d mit Tarif %s", minuten, stunde, minute, tarif.tarif);
+		String message1 = String.format("Berechne GesprÃ¤ch mit %02d min um %02d:%02d mit Tarif %s", minuten, stunde, minute, tarif.tarif);
 		System.out.println(message1);
 		boolean mondschein = false;
 		double preis = 0;
@@ -41,11 +41,11 @@ public class Kunde {
 			break;
 
 		}
-		String message2 = String.format("Preis für das Gespräch: %.2f", preis);
+		String message2 = String.format("Preis fÃ¼r das GesprÃ¤ch: %.2f", preis);
 		System.out.println(message2);
 		
 		gebuehr += preis;
-		String message3 = String.format("Gesamtgebühr nach Gespräch um %02d:%02d (Mondscheinzeit: %s): %.2f", stunde, minute, mondschein, gebuehr);
+		String message3 = String.format("GesamtgebÃ¼hr nach GesprÃ¤ch um %02d:%02d (Mondscheinzeit: %s): %.2f", stunde, minute, mondschein, gebuehr);
 		System.out.println(message3);
 	}
 
