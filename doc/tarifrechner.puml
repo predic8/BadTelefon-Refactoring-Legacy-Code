@@ -1,5 +1,5 @@
 @startuml
-!pragma graphviz_dot jdot
+!pragma layout smetana
 
 top to bottom direction
 skinparam handwritten true
