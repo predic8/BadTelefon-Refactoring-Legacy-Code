@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://lib/junit.jar" />
+    <libelement value="file://lib/ApprovalTests.jar" />
+    <libelement value="file://lib/powermock-mockito-1.6.3-full.jar" />
+    <libelement value="file://lib/mockito-all-1.10.19.jar" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src/test/java" expected_position="0" />
+      <src_folder value="file://$MODULE_DIR$/src/test/resources" expected_position="1" />
+      <src_folder value="file://$MODULE_DIR$/src/main/java" expected_position="2" />
+      <src_folder value="file://$MODULE_DIR$/src/main/resources" expected_position="3" />
+    </src_description>
+  </component>
+  <component name="FacetManager">
+    <facet type="Infinitest" name="Infinitest">
+      <configuration />
+    </facet>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/target" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module-library">
+      <library name="junit.jar">
+        <CLASSES>
+          <root url="file://lib/junit.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="ApprovalTests.jar">
+        <CLASSES>
+          <root url="file://lib/ApprovalTests.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="powermock-mockito-1.6.3-full.jar">
+        <CLASSES>
+          <root url="file://lib/powermock-mockito-1.6.3-full.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="junit4">
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/junit4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mockito-all-1.10.19.jar">
+        <CLASSES>
+          <root url="file://lib/mockito-all-1.10.19.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="ApprovalTests" level="project" />
+  </component>
+</module>
