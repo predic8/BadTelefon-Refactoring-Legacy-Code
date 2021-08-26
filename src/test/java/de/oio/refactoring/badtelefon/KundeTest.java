@@ -1,42 +1,36 @@
 package de.oio.refactoring.badtelefon;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import static de.oio.refactoring.badtelefon.Tarif.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import de.oio.refactoring.badtelefon.output.Outputter;
+class KundeTest {
 
-@RunWith(MockitoJUnitRunner.class)
-public class KundeTest {
+    Kunde privat = new Kunde(PRIVAT);
+    Kunde business = new Kunde(BUSINESS);
+    Kunde profi = new Kunde(PROFI);
 
-	private Outputter outputterMock;
+    @Test
+    void privatTarif() {
+        privat.account(17, 10, 30);
+        privat.account(5, 2, 37);
+        privat.account(37, 22, 05);
+        assertEquals(59.44,privat.getGebuehr());
+    }
 
-	@Before
-	public void init() {
-		outputterMock = Mockito.mock(Outputter.class);
-	}
+    @Test
+    void businessTarif() {
+        business.account(17, 10, 30);
+        business.account(5, 2, 37);
+        business.account(37, 22, 05);
+        assertEquals(55.11,business.getGebuehr());
+    }
 
-	@Test
-	public void testAccountWithBusinessTarif() {
-		new Kunde(Tarif.BUSINESS, outputterMock).account(10, 12, 35);
-		verify(outputterMock).writeLine("Berechne Gespräch mit 10 min um 12:35 mit Tarif 1");
-		verify(outputterMock).writeLine("Preis für das Gespräch: 12,90");
-		verify(outputterMock).writeLine("Gesamtgebühr nach Gespräch um 12:35 (Mondscheinzeit: false): 12,90");
-		verifyNoMoreInteractions(outputterMock);
-	}
-
-	@Test
-	public void testAccountWithPrivatTarif() {
-		new Kunde(Tarif.PRIVAT, outputterMock).account(10, 12, 35);
-		verify(outputterMock).writeLine("Berechne Gespräch mit 10 min um 12:35 mit Tarif 0");
-		verify(outputterMock).writeLine("Preis für das Gespräch: 17,91");
-		verify(outputterMock).writeLine("Gesamtgebühr nach Gespräch um 12:35 (Mondscheinzeit: false): 17,91");
-		verifyNoMoreInteractions(outputterMock);
-	}
-
+    @Test
+    void profiTarif() {
+        profi.account(17, 10, 30);
+        profi.account(37, 22, 05);
+        assertEquals(37.26,profi.getGebuehr(),0.01);
+    }
 }
