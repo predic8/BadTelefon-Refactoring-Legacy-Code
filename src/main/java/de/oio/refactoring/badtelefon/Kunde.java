@@ -1,22 +1,24 @@
 package de.oio.refactoring.badtelefon;
 
-import de.oio.refactoring.badtelefon.output.Outputter;
-
 public class Kunde {
-	double gebuehr = 0.0;
-	Tarif tarif;
-	private final Outputter outputter;
 
-	public Kunde(int tarifArt, Outputter outputter) {
+	private double gebuehr = 0.0;
+	private Tarif tarif;
+	private boolean mondschein;
+
+	public Kunde(int tarifArt) {
 		this.tarif = new Tarif(tarifArt);
-		this.outputter = outputter;
 	}
 
 	public void account(int minuten, int stunde, int minute) {
-		outputter.writeLine(String.format("Berechne Gespräch mit %02d min um %02d:%02d mit Tarif %s", minuten, stunde, minute, tarif.tarif));
+
 		double preis = 0;
 
-		boolean mondschein = isMondschein(stunde);
+		// Mondscheintarif anwendbar?
+		if (stunde < 9 | stunde > 18)
+			mondschein = true;
+		else
+			mondschein = false;
 
 		// Gespraechspreis ermitteln
 		switch (tarif.tarif) {
@@ -39,16 +41,9 @@ public class Kunde {
 		case Tarif.PROFI:
 			preis = minuten * 0.69;
 			break;
-
 		}
-		outputter.writeLine(String.format("Preis für das Gespräch: %.2f", preis));
 		
 		gebuehr += preis;
-		outputter.writeLine(String.format("Gesamtgebühr nach Gespräch um %02d:%02d (Mondscheinzeit: %s): %.2f", stunde, minute, mondschein, gebuehr));
-	}
-
-	private static boolean isMondschein(int stunde) {
-		return stunde < 9 || stunde > 18;
 	}
 
 	public double getGebuehr() {
