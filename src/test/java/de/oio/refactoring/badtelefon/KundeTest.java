@@ -1,5 +1,6 @@
 package de.oio.refactoring.badtelefon;
 
+import de.oio.refactoring.badtelefon.tarif.*;
 import org.junit.jupiter.api.Test;
 
 import static de.oio.refactoring.badtelefon.Tarif.*;
@@ -7,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class KundeTest {
 
-    Kunde privat = new Kunde(PRIVAT);
-    Kunde business = new Kunde(BUSINESS);
-    Kunde profi = new Kunde(PROFI);
+    Kunde privat = new Kunde(new PrivatTarif());
+    Kunde business = new Kunde(new BusinessTarif());
+    Kunde profi = new Kunde(new ProfiTarif());
 
     @Test
     void privatTarif() {
