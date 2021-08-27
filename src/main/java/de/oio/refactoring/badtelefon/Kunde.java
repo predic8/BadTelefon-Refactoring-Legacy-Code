@@ -4,7 +4,6 @@ public class Kunde {
 
 	private double gebuehr = 0.0;
 	private Tarif tarif;
-	private boolean mondschein;
 
 	public Kunde(int tarifArt) {
 		this.tarif = new Tarif(tarifArt);
@@ -12,6 +11,7 @@ public class Kunde {
 
 	public void account(int minuten, int stunde, int minute) {
 
+		boolean mondschein;
 		double preis = 0;
 
 		// Mondscheintarif anwendbar?
