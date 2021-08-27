@@ -10,3 +10,6 @@ hs_err_pid*
 /target/
 *.received.txt
 *.approved.txt
+*.iml
+*.idea
+.DS_Store
